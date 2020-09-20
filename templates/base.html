@@ -1,4 +1,6 @@
 {% load static %}
+{% load cache %}
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -20,9 +22,12 @@
     <div class="row">
 
         <div class="col-md-3">
+{#            {% cache 6 sidebar %}#}
+                {% block sidebar %}SIDEBAR{% endblock %}
+{#            {% endcache %}#}
 
-            {% block sidebar %}SIDEBAR{% endblock %}
         </div>
+
 
         <div class="col-md-9">
 
@@ -35,8 +40,10 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
+{#            {% cache 6 content %}#}
+                {% block content %}CONTENT{% endblock %}
+{#            {% endcache %}#}
 
-            {% block content %}CONTENT{% endblock %}
             {% if page_obj.paginator.num_pages > 1 %}
 
                 <nav aria-label="paginator">

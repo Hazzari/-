@@ -49,12 +49,18 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = env('EMAIL_PORT')
 EMAIL_USE_TLS = env('EMAIL_USE_TLS')
 
-# CACHES = {
-#     # read os.environ['CACHE_URL'] and raises ImproperlyConfigured exception if not found
-#     'default': env.cache(),
-#     # read os.environ['REDIS_URL']
-#     'redis': env.cache('REDIS_URL')
-# }
+if DEBUG:
+    # Псевдо кэш
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        }
+    }
+else:
+    # Redis
+    CACHES = {
+        'default': env.cache('REDIS_URL'),
+    }
 
 # ## РАЗДЕЛ РАБОТЫ С .env КОНЕЦ
 
@@ -156,6 +162,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # # Нужно только для статичных сайтов
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'django_learn.urls'

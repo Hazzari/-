@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.views.decorators.cache import cache_page
 
 from .views import *
 
@@ -11,6 +12,7 @@ urlpatterns = [
     path('logout/', user_logout, name='logout'),
     # path('', index, name='home'),
     # path('category/<int:category_id>/', get_category, name='category'),
+    # path('', cache_page(10)(HomeNews.as_view()), name='home'),
     path('', HomeNews.as_view(), name='home'),
     path('category/<int:category_id>/', NewsByCategory.as_view(), name='category'),
     # path('news/<int:news_id>/', view_news, name='view_news'),
