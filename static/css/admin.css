@@ -1,0 +1,14 @@
+#header,
+.module h2, .module caption, .inline-group h2,
+.breadcrumbs
+{
+    background: #616161;
+}
+
+div.breadcrumbs {
+    background: #424242;
+}
+
+.object-tools a:focus, .object-tools a:hover {
+    background: #f4511e;
+}

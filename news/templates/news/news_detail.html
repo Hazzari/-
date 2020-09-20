@@ -19,10 +19,10 @@
             {% if news_item.photo %}
                 <img src="{{ news_item.photo.url }}" alt="x" width="250" class="float-left mr-3">
             {% else %}
-                <img src="#" alt="Картинка не загрузилась почему то!" class="float-left mr-3">
+                <img src="#" alt="Картинка не загрузилась" class="float-left mr-3">
             {% endif %}
             <h5 class="card-title">{{ news_item.title }}</h5>
-            <p class="card-text">{{ news_item.content|linebreaks }}</p>
+            <p class="card-text">{{ news_item.content|safe|linebreaks }}</p>
         </div>
         <div class="card-footer text-muted">
             {{ news_item.created_at|date:"H:i:s d-m-Y " }}

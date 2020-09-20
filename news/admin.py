@@ -1,12 +1,22 @@
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 from .models import News, Category
 
 
+class NewsAdminForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = News
+        fields = '__all__'
+
+
 @admin.register(News)
 class NewAdmin(admin.ModelAdmin):
-    ...
+    form = NewsAdminForm
     # Отображает заголовки колонок
     list_display = ('id', 'title', 'category', 'created_at', 'is_published', 'get_photo', 'updated_at')
     list_display_links = ('id', 'title',)
@@ -17,7 +27,6 @@ class NewAdmin(admin.ModelAdmin):
     save_on_top = True
     # как выглядит пустое поле
     empty_value_display = '-empty-'
-
 
     # Указываем какие поля нужны в редакторе модели
     fields = ('get_photo', 'title', 'category', 'content', 'photo', 'is_published', 'views', 'created_at', 'updated_at')
