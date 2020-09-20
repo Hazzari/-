@@ -1,0 +1,12 @@
+{% extends "news/base_news.html" %}
+{% block title %}
+    {{ category.title }}
+{% endblock %}
+{% block sidebar %}
+    {% include "inc/_sidebar.html" %}
+{% endblock %}
+
+{% block content %}
+    {% include "news/app/inc/_news_card.html" %}
+
+{% endblock %}

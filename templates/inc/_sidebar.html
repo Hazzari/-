@@ -1,0 +1,19 @@
+{% load news_tags %}
+
+{% comment %}
+это из первого кастомного тега
+<div class="list-group">
+    {% get_list_categories as catigories  %}
+    {% for item in catigories %}
+        <a href="{{ item.get_absolute_url }}"
+           class="list-group-item list-group-item-action">{{ item.title }}</a>
+    {% endfor %}
+</div>
+
+<br>
+{% endcomment %}
+
+{#{% show_categories arg2='шаблона из sidebar' %}#}
+{% show_categories  %}
+
+

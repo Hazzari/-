@@ -1,0 +1,28 @@
+{% for item_news in news %}
+    <div class="card mb-3 mr-1">
+        <div class="card-header">
+            <b>{{ forloop.counter }}.</b>
+            Категория: <a href="{{ item_news.category.get_absolute_url }}">{{ item_news.category.title }}</a>
+
+        </div>
+        <div class="card-body">
+            <div class="media">
+                {% if item_news.photo %}
+                    <img src="{{ item_news.photo.url }}" alt="x" width="250" class="mr-3">
+                {% else %}
+                    <img src="https://picsum.photos/id/1060//250/200/?blur" alt="x" class="mr-3">
+                {% endif %}
+
+                <div class="media-body">
+                    <h5 class="card-title">{{ item_news.title }}</h5>
+                    <p class="card-text">{{ item_news.content|linebreaks|truncatewords:50 }}</p>
+                    <a href="{{ item_news.get_absolute_url }}" class="btn btn-primary">Читать</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            {{ item_news.created_at|date:"H:i:s d-m-Y " }}
+        </div>
+    </div>
+
+{% endfor %}

@@ -1,0 +1,33 @@
+{% extends "news/base_news.html" %}
+
+{% block title %}
+    {{ news_item.title }}
+{% endblock %}
+{% block sidebar %}
+    {% include "inc/_sidebar.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="card mb-3 mr-1">
+        <div class="card-header">
+            <b>{{ forloop.counter }}</b>
+            Категория: <a href="{{ news_item.category.get_absolute_url }}">{{ news_item.category.title }}</a>
+
+        </div>
+        <div class="card-body">
+
+            {% if news_item.photo %}
+                <img src="{{ news_item.photo.url }}" alt="x" width="250" class="float-left mr-3">
+            {% else %}
+                <img src="#" alt="Картинка не загрузилась почему то!" class="float-left mr-3">
+            {% endif %}
+            <h5 class="card-title">{{ news_item.title }}</h5>
+            <p class="card-text">{{ news_item.content|linebreaks }}</p>
+        </div>
+        <div class="card-footer text-muted">
+            {{ news_item.created_at|date:"H:i:s d-m-Y " }}
+        </div>
+    </div>
+
+
+{% endblock %}

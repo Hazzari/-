@@ -1,0 +1,93 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon2.ico' %}"/>
+    <title>{% block title %} OVERRIDE ME!!!!{% endblock %}</title>
+</head>
+<body>
+
+{% include "inc/_nav.html" %}
+
+<div class="container mt-3 ">
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            {% block sidebar %}SIDEBAR{% endblock %}
+        </div>
+
+        <div class="col-md-9">
+
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" role="alert">{{ message }}</div>
+                    {% else %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% block content %}CONTENT{% endblock %}
+            {% if page_obj.paginator.num_pages > 1 %}
+
+                <nav aria-label="paginator">
+                    <ul class="pagination justify-content-end">
+                        {#                    назад#}
+                        {% if not page_obj.has_previous %}
+                            <li class="page-item disabled"><a class="page-link" tabindex="-1"
+                                                              aria-disabled="true">Начало</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page=1">Начало</a>
+                            </li>
+                        {% endif %}
+                        {#                     цифры #}
+                        {% for p in page_obj.paginator.page_range %}
+                            {% if page_obj.number == p %}
+                                <li class="page-item active" aria-current="page"><a class="page-link"
+                                                                                    href="?page={{ p }}">{{ p }}<span
+                                        class="sr-only">(current)</span></a></li>
+                            {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+
+                                <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+
+                            {% endif %}
+                        {% endfor %}
+                        {#                    вперед#}
+                        {% if not page_obj.has_next %}
+                            <li class="page-item disabled"><a class="page-link" tabindex="-1"
+                                                              aria-disabled="true">Конец</a></li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Конец</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{% static 'bootstrap/js/jquery-3.5.1.slim.min.js' %}"
+        crossorigin="anonymous"></script>
+<script src="{% static 'bootstrap/js/popper.min.js' %}"
+        crossorigin="anonymous"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
+
+
