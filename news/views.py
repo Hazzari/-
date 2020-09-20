@@ -15,7 +15,7 @@ from .forms import NewsForm, UserRegisterForm, UserLoginForm, ContactEmailForm
 env = environ.Env()
 
 
-def test(request):
+def contact(request):
     if request.method == 'POST':
         form = ContactEmailForm(request.POST)
         if form.is_valid():
