@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from captcha.fields import CaptchaField, CaptchaTextInput
+
 import re
 
 # from .models import Category
@@ -81,7 +83,7 @@ class UserLoginForm(AuthenticationForm):
 
 class ContactEmailForm(forms.Form):
     subject = forms.CharField(label='Тема письма', widget=forms.TextInput(attrs={'class': 'form-control', }))
-    content = forms.CharField(label='Текст письма',
-                              widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
+    content = forms.CharField(label='Текст письма', widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
+    captcha = CaptchaField(widget=CaptchaTextInput)
     # email = forms.EmailField()
     # name = forms.CharField(max_length=25)

@@ -137,6 +137,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'debug_toolbar',
     'ckeditor',
+    'captcha',
     'ckeditor_uploader',
 
 ]

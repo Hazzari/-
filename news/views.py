@@ -28,10 +28,10 @@ def contact(request):
             else:
                 messages.error(request, 'Ошибка отправки')
         else:
-            messages.error(request, 'Письмо не отправленно')
+            messages.error(request, 'Ошибка валидации')
     else:
         form = ContactEmailForm()
-    return render(request, 'news/test.html', context={'form': form})
+    return render(request, 'news/contact.html', context={'form': form})
 
 
 def register(request):
