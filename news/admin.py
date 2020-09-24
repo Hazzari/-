@@ -16,6 +16,7 @@ class NewsAdminForm(forms.ModelForm):
 
 @admin.register(News)
 class NewAdmin(admin.ModelAdmin):
+    # CKEDITOR
     form = NewsAdminForm
     # Отображает заголовки колонок
     list_display = ('id', 'title', 'category', 'created_at', 'is_published', 'get_photo', 'updated_at')
