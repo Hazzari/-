@@ -23,8 +23,7 @@ def get_categories():
 @register.inclusion_tag(filename='news/app/list_categories.html')
 def show_categories(arg1='Для', arg2='примера'):
     # # Получение категорий из кэша
-    base_request = Category.objects.annotate(count_category=Count('news', filter=F('news__is_published'))).filter(
-        count_category__gt=0)
+    base_request = Category.objects.annotate(count_category=Count('news', filter=F('news__is_published'))).filter(count_category__gt=0)
     categories = cache.get_or_set('categories', base_request, 5)
     # categories = Category.objects.all()
     # categories = Category.objects.annotate(count_category=Count('news')).filter(count_category__gt=0)

@@ -29,6 +29,7 @@ class NewAdmin(admin.ModelAdmin):
     # как выглядит пустое поле
     empty_value_display = '-empty-'
 
+
     # Указываем какие поля нужны в редакторе модели
     fields = ('get_photo', 'title', 'category', 'content', 'photo', 'is_published', 'views', 'created_at', 'updated_at')
     # Указываем read only -> те что нельзя редактировать
