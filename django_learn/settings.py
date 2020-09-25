@@ -145,6 +145,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'captcha',
     'ckeditor_uploader',
+    'testapp.apps.TestappConfig',
+    'mptt'
 
 ]
 
