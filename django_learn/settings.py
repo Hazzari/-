@@ -239,8 +239,8 @@ STATIC_URL = '/static/'
 
 if settings.DEBUG:
     STATICFILES_DIRS = [
-        # os.path.join(BASE_DIR, 'django_learn/static'),
-        '/Users/aleksan/django_learn/django_learn/static',
+        os.path.join(BASE_DIR, 'django_learn/static'),
+        # '/Users/aleksan/django_learn/django_learn/static',
 
     ]
 
