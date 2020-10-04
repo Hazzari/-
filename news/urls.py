@@ -7,7 +7,8 @@ urlpatterns = [
 
     path('contact/', contact, name='contact'),
     path('register/', register, name='register'),
-    path('login/', user_login, name='login'),
+    # path('login/', user_login, name='login'),
+    path('login/', UserLogView.as_view(), name='login'),
     path('logout/', user_logout, name='logout'),
     # path('', index, name='home'),
     # path('category/<int:category_id>/', get_category, name='category'),

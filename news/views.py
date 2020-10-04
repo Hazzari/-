@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.contrib.auth import login, logout
 # from django.contrib.auth.forms import UserCreationForm
@@ -51,6 +52,13 @@ def register(request):
     return render(request, 'news/register.html', context={'form': form})
 
 
+# ## LOGIN
+# Login user Class and function
+class UserLogView(LoginView):
+    authentication_form = UserLoginForm
+    template_name = 'news/login.html'
+
+
 def user_login(request):
     if request.method == 'POST':
         # нужно присвоить в data=!!!!
@@ -62,6 +70,9 @@ def user_login(request):
     else:
         form = UserLoginForm()
     return render(request, 'news/login.html', context={'form': form})
+
+
+# ## LOGIN
 
 
 def user_logout(request):

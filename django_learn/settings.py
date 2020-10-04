@@ -140,13 +140,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'news.apps.NewsConfig',
+    'testapp.apps.TestappConfig',
+
     'debug_toolbar',
     'ckeditor',
     'captcha',
     'ckeditor_uploader',
-    'testapp.apps.TestappConfig',
-    'mptt'
+    'mptt',
 
 ]
 
